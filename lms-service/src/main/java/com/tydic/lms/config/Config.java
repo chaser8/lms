@@ -15,8 +15,14 @@ package com.tydic.lms.config;
  */
 public class Config {
 	public static final String ZK_ADDRESS = "localhost:2181";
+	//主节点
 	public static final String ZK_ROOT_PATH = "/lms-service";
+	/** 节点管理目录 */
 	public static final String ZK_COORDINATION_PATH = ZK_ROOT_PATH+"/COORDINATION";
 	public static final String ZK_COORDINATOR_PATH = ZK_COORDINATION_PATH+"/OORDINATOR";
 	public static final String ZK_WORKER_PATH = ZK_COORDINATION_PATH+"/WORKER";
+	
+	/** 任务管理目录 */
+	public static final String ZK_TASK_PATH = ZK_ROOT_PATH+"/TASKS";
+	public static final String ZK_WORKER_TASK_PATH = ZK_TASK_PATH+"/TASK";
 }
