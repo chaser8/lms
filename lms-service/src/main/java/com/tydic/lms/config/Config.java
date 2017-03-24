@@ -7,6 +7,12 @@
  */
 package com.tydic.lms.config;
 
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+
+import com.tydic.lms.exception.ApplicationException;
+
 /**
  * @ClassName: Config
  * @Description: 
@@ -14,7 +20,12 @@ package com.tydic.lms.config;
  * @date 2017年3月16日 上午9:57:24
  */
 public class Config {
-	public static final String ZK_ADDRESS = "localhost:2181";
+	
+	private static final Logger log = Logger.getLogger(Config.class);
+	public static final String APP_COORDINATOR = "coordinator";
+	
+	
+	public static final String ZK_CONNECTSTRING = "zk.connectString";
 	//主节点
 	public static final String ZK_ROOT_PATH = "/lms-service";
 	/** 节点管理目录 */
@@ -25,4 +36,20 @@ public class Config {
 	/** 任务管理目录 */
 	public static final String ZK_TASK_PATH = ZK_ROOT_PATH+"/TASKS";
 	public static final String ZK_WORKER_TASK_PATH = ZK_TASK_PATH+"/TASK";
+	
+	private static Map<String,String> config;
+	
+	public static void setAppConfig(Map<String,String> config){
+		Config.config = config;
+	}
+	public static String getConfig(String key){
+		if(config==null){
+			throw new ApplicationException("config is null.");
+		}
+		return Config.config.get(key);
+	}
+	public static final String [] configKeys=new String[]{
+			APP_COORDINATOR,ZK_CONNECTSTRING
+	};
+	
 }

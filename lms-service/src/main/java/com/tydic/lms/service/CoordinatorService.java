@@ -7,8 +7,6 @@
  */
 package com.tydic.lms.service;
 
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.CreateMode;
 
@@ -24,16 +22,12 @@ import com.tydic.lms.utils.ZooKeeperUtil;
 public class CoordinatorService {
 	private static final Logger log = Logger.getLogger(CoordinatorService.class);
 	public void init(){
-		ZooKeeperUtil.initZkClient(Config.ZK_ADDRESS);
-		ZooKeeperUtil.deleteNode(Config.ZK_WORKER_PATH);
-		ZooKeeperUtil.createNode(Config.ZK_ROOT_PATH, "1111",CreateMode.PERSISTENT);
+		/** 节点管理目录 */
+		ZooKeeperUtil.createNode(Config.ZK_ROOT_PATH, "",CreateMode.PERSISTENT);
 		log.info(String.format("%s created.", Config.ZK_ROOT_PATH));
-		ZooKeeperUtil.createNode(Config.ZK_COORDINATION_PATH, "aaaa",CreateMode.PERSISTENT);
+		ZooKeeperUtil.createNode(Config.ZK_COORDINATION_PATH, "",CreateMode.PERSISTENT);
 		log.info(String.format("%s created.", Config.ZK_COORDINATION_PATH));
 		ZooKeeperUtil.createNode(Config.ZK_COORDINATOR_PATH, "",CreateMode.PERSISTENT_SEQUENTIAL);
 		log.info(String.format("%s created.", Config.ZK_COORDINATOR_PATH));
-		Map m = ZooKeeperUtil.listChildrenDetail(Config.ZK_ROOT_PATH);
-		
-		log.debug(m);
 	}
 }

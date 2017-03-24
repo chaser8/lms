@@ -34,8 +34,6 @@ public class ZooKeeperUtil {
 	private static final Logger log = Logger.getLogger(ZooKeeperUtil.class);
 
 	private static CuratorFramework client;
-	private static String zkAddress = "localhost:2181";
-
 	public static void initZkClient(String zkAddress) {
 		client = CuratorFrameworkFactory.newClient(zkAddress, new ExponentialBackoffRetry(1000, 3));
 		client.start();
@@ -216,7 +214,7 @@ public class ZooKeeperUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ZooKeeperUtil.initZkClient(zkAddress);
+		ZooKeeperUtil.initZkClient("localhost:2181");
 //		ZooKeeperUtil.createNode("/zkroot/test1", "你好abc11");
 //		ZooKeeperUtil.createNode("/zkroot/test2", "你好abc22");
 //		ZooKeeperUtil.updateNode("/zkroot/test2", "你好abc22");
