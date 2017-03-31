@@ -5,7 +5,7 @@
  * @date 2017年3月16日 上午10:03:38
  * @version 
  */
-package com.tydic.lms.service;
+package com.tydic.lms.worker;
 
 /**
  * @ClassName: TaskService

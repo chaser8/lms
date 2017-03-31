@@ -55,19 +55,30 @@
 			<version>1.6.4</version>
 		</dependency>
 		<dependency>
-		  <groupId>com.belerweb</groupId>
-		  <artifactId>pinyin4j</artifactId>
-		  <version>2.5.0</version>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.kafka</groupId>
-		    <artifactId>kafka-clients</artifactId>
-		    <version>0.8.2.0</version>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>0.8.2.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.kafka</groupId>
-		    <artifactId>kafka_2.10</artifactId>
-		    <version>0.8.2.0</version>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.2.4.RELEASE</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -82,6 +93,26 @@
 					<target>${java.target.version}</target>
 					<optimize>true</optimize>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/resources</source>
+								<source>src/main/java</source>
+								<source>src/test/java</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>

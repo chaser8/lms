@@ -23,19 +23,28 @@ public class Config {
 	
 	private static final Logger log = Logger.getLogger(Config.class);
 	public static final String APP_COORDINATOR = "coordinator";
-	
+	public static final String APP_JARS = "jars";
 	
 	public static final String ZK_CONNECTSTRING = "zk.connectString";
 	//主节点
 	public static final String ZK_ROOT_PATH = "/lms-service";
-	/** 节点管理目录 */
-	public static final String ZK_COORDINATION_PATH = ZK_ROOT_PATH+"/COORDINATION";
-	public static final String ZK_COORDINATOR_PATH = ZK_COORDINATION_PATH+"/OORDINATOR";
-	public static final String ZK_WORKER_PATH = ZK_COORDINATION_PATH+"/WORKER";
+	/** 主节点管理目录 */
+	public static final String ZK_COORDINATION_PATH = ZK_ROOT_PATH+"/coordination";
+	public static final String ZK_COORDINATOR_PATH = ZK_COORDINATION_PATH+"/coordinator";
 	
-	/** 任务管理目录 */
-	public static final String ZK_TASK_PATH = ZK_ROOT_PATH+"/TASKS";
-	public static final String ZK_WORKER_TASK_PATH = ZK_TASK_PATH+"/TASK";
+	/** 执行任务的节点管理目录 */
+	public static final String ZK_WORKERS_PATH = ZK_ROOT_PATH+"/workers";
+	public static final String ZK_WORKER_PATH = ZK_COORDINATION_PATH+"/worker";
+	
+	/** 实际执行的任务管理目录 */
+	public static final String ZK_TASKS_PATH = ZK_ROOT_PATH+"/tasks";
+	public static final String ZK_TASK_PATH = ZK_TASKS_PATH+"/task";
+	
+	/**
+	 * 用户上传的任务目录
+	 */
+	public static final String ZK_JOBS_PATH = ZK_ROOT_PATH+"/jbos";
+	public static final String ZK_JOB_PATH = ZK_JOBS_PATH+"/job";
 	
 	private static Map<String,String> config;
 	
@@ -49,7 +58,7 @@ public class Config {
 		return Config.config.get(key);
 	}
 	public static final String [] configKeys=new String[]{
-			APP_COORDINATOR,ZK_CONNECTSTRING
+			APP_COORDINATOR,ZK_CONNECTSTRING,APP_JARS
 	};
 	
 }

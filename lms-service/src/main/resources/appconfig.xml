@@ -3,4 +3,5 @@
 <properties>
 	<entry key="coordinator">true</entry>
 	<entry key="zk.connectString">localhost:2181</entry>
+	<entry key="jars">/Users/yzb/02.Subversion/02.git/my/lms.git/trunk/lms-service/jars</entry>
 </properties>

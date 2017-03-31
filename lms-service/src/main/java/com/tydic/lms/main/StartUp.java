@@ -16,8 +16,8 @@ import com.tydic.base.util.Maps;
 import com.tydic.base.util.ObjectUtil;
 import com.tydic.base.util.SpringBeanUtil;
 import com.tydic.lms.config.Config;
+import com.tydic.lms.coordinator.CoordinatorService;
 import com.tydic.lms.exception.ApplicationException;
-import com.tydic.lms.service.CoordinatorService;
 import com.tydic.lms.utils.ZooKeeperUtil;
 
 /**
@@ -35,6 +35,8 @@ public class StartUp {
 			springInstance.setApplicationContext(new ClassPathXmlApplicationContext("applicationContext.xml"));
 		}
 		initializeConfig();
+		//初始化zk连接
+		ZooKeeperUtil.initZkClient(Config.getConfig(Config.ZK_CONNECTSTRING));
 	}
 	/**
 	 * 
@@ -68,8 +70,13 @@ public class StartUp {
 	 * @date 2017年3月8日 下午5:51:37
 	 */
 	public static void main(String[] args) {
-		ZooKeeperUtil.initZkClient(Config.getConfig(Config.ZK_CONNECTSTRING));
-		CoordinatorService coordinatorService = new CoordinatorService();
-		coordinatorService.init();
+		//主节点
+		if("true".equalsIgnoreCase(Config.getConfig(Config.APP_COORDINATOR))){
+			CoordinatorService coordinatorService = new CoordinatorService();
+			//初始化ZK目录
+			coordinatorService.init();
+			//加载执行任务的jars
+			coordinatorService.initJobs();
+		}
 	}
 }
