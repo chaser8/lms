@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="coordinator">true</entry>
+	<entry key="zk.connectString">localhost:2181</entry>
+	<entry key="jars">/Users/yzb/02.Subversion/02.git/my/lms.git/trunk/lms-service/jars</entry>
+</properties>
